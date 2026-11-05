@@ -1,0 +1,12 @@
+name: Q2Main
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Q2_TRIGGERED event=${{ github.event.workflow_run.event }} head_repo=${{ github.event.workflow_run.head_repository.full_name }} head_branch=${{ github.event.workflow_run.head_branch }}"
