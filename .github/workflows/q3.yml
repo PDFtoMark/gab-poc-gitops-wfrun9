@@ -1,0 +1,12 @@
+name: Q3StarStar
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: ["**"]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Q3_TRIGGERED event=${{ github.event.workflow_run.event }} head_repo=${{ github.event.workflow_run.head_repository.full_name }}"
